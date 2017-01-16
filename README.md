@@ -7,7 +7,7 @@ The purpose of this repository is to introduce you to some of the tools/techniqu
 
 If you have experience with the listed tools, it should take roughly **6 hours** to complete.  Not having experience with this environment does not disqualify you from succeeding, but you should expect it to take longer.
 
-You will be building a **"comments" application**.  One of the most effective ways to build a community around any idea is to give that community the ability to discuss that idea! 
+You will be building a **comments application**.  One of the most effective ways to build a community around any idea is to give that community the ability to discuss that idea! 
 
 If you're familiar with [Disqus](https://disqus.com/) - the concept should be rather intuitive. :)
 
