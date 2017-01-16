@@ -1,12 +1,23 @@
 # POWr FullStack Onboarding
 ####Project: Comments
+<img src='https://pbs.twimg.com/profile_images/775821222445592576/CmwF9aeq.jpg' align='right'>
 We are very excited to have you beginning the POWr onboarding process and we hope you are too!
 
-The purpose of this repository is to introduce you to some of the tools/techniques we use at POWr and test your ability to use/learn them while building a production-ready product.  If you have experience with the listed tools, it should take roughly **6 hours** to complete.  Not having experience with this environment does not disqualify you from succeeding, but you should expect it to take longer.
+The purpose of this repository is to introduce you to some of the tools/techniques we use at POWr and test your ability to use/learn them while building a production-ready product.
 
-You will be building a **"comments" application**.  One of the most effective ways to build a community around any idea is to give that community the ability to discuss that idea! 
+If you have experience with the listed tools, it should take roughly **6 hours** to complete.  Not having experience with this environment does not disqualify you from succeeding, but you should expect it to take longer.
+
+You will be building a **comments application**.  One of the most effective ways to build a community around any idea is to give that community the ability to discuss that idea! 
 
 If you're familiar with [Disqus](https://disqus.com/) - the concept should be rather intuitive. :)
+
+Installation
+---
+1. `npm install`
+2. `npm run dbusercreate` <- This may prompt you for your `sudo` password. You don't have to use it, but it makes the process easier generally.
+3. `npm run dbinit`
+4. `npm start`
+5. Visit: localhost:8080
 
 Goals
 ---
