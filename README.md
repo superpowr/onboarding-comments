@@ -31,7 +31,7 @@ Goals
 3. Tests.  The world is ridden with buggy code.  Winter doesn't have to come.
 ![Tests]
 (https://blog.testfort.com/wp-content/uploads/2014/12/q3.jpg)
-4. Integrate your application with a popular website builder. (We recommend trying (Weebly)[https://www.weebly.com/developer/] - it's simple and free.)
+4. Integrate your application with a popular website builder. (We recommend trying [Weebly](https://www.weebly.com/developer/) - it's simple and free.)
 
 Resources
 ---
