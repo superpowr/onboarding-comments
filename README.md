@@ -2,7 +2,7 @@
 ####Project: Comments
 We are very excited to have you beginning the POWr onboarding process and we hope you are too!
 
-But - More to the point. The purpose of this repository is to introduce you to some of the tools/techniques we use at POWr and test your ability to use/learn them while building a production-ready product.  If you have experience with the listed tools, it should take roughly **6 hours**.  Not having experience with this environment does not disqualify you from succeeding, but you should expect it to take longer.
+The purpose of this repository is to introduce you to some of the tools/techniques we use at POWr and test your ability to use/learn them while building a production-ready product.  If you have experience with the listed tools, it should take roughly **6 hours**.  Not having experience with this environment does not disqualify you from succeeding, but you should expect it to take longer.
 
 You will be building a **"comments" application**.  One of the most effective ways to build a community around any idea is to give that community the ability to discuss that idea! 
 
