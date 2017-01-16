@@ -35,7 +35,7 @@ Goals
 
 Resources
 ---
-####Below are a series of resources that you may find helpful when proceeding through your build:
+####Below are a series of resources that you may find helpful when proceeding through your build
 
 Webpack
 ---
@@ -65,5 +65,7 @@ Testing
 * https://mochajs.org/
 * http://chaijs.com/
 
+Once you feel that your application is complete, feel free to notify POWr and make a pull request on the master branch of this repo.
 
+Happy coding!
 
