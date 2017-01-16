@@ -13,9 +13,11 @@ If you're familiar with [Disqus](https://disqus.com/) - the concept should be ra
 
 Installation
 ---
-`npm install`
-`npm run dbusercreate` <- This may prompt you for your `sudo` password. You don't have to use it, but it makes the process easier generally.
-`npm run dbinit`
+1. `npm install`
+2. `npm run dbusercreate` <- This may prompt you for your `sudo` password. You don't have to use it, but it makes the process easier generally.
+3. `npm run dbinit`
+4. `npm start`
+5. Visit: localhost:8080
 
 Goals
 ---
