@@ -11,6 +11,12 @@ You will be building a **comments application**.  One of the most effective ways
 
 If you're familiar with [Disqus](https://disqus.com/) - the concept should be rather intuitive. :)
 
+Installation
+---
+`npm install`
+`npm run dbusercreate` <- This may prompt you for your `sudo` password. You don't have to use it, but it makes the process easier generally.
+`npm run dbinit`
+
 Goals
 ---
 ####Your comments application should have the following minimal user-consumable features:
