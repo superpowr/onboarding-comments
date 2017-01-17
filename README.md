@@ -32,7 +32,7 @@ Goals
 
 
 
-####You comments application should have the following architectural features:
+####Your comments application should have the following architectural features:
 
 1. A front-end application written in **React**(w.Redux).
 2. Application server written using **Node**(w.Express).
