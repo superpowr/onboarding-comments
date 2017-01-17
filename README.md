@@ -80,6 +80,7 @@ Testing
 ---
 * https://mochajs.org/
 * http://chaijs.com/
+* https://github.com/airbnb/enzyme
 
 Once you feel that your application is complete, feel free to notify POWr and make a pull request on the master branch of this repo.
 
