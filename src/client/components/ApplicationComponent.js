@@ -1,6 +1,16 @@
-import React from 'react';
-export default ApplicationComponent;
+import React, { Component } from 'react';
+import Header from './Header';
+import MessageList from './MessageList'
+import MessageBar from './MessageBar'
 
-function ApplicationComponent(){
-    return <div>Im a the default component. Make me awesome.</div>
+export default class ApplicationComponent extends Component {
+  render() {
+    return (
+      <div>
+        <Header/>
+        <MessageList/>
+        <MessageBar/>
+      </div>
+    )
+  }
 }

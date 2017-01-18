@@ -40,6 +40,43 @@ figlet(introAscii,{font:asciiFont})
         res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
+      app.get('/messages/posts', function(req, res) {
+        db.Message.findAll()
+        .then((data) => {
+          res.send(data)
+        })
+      })
+
+      app.post('/messages/posts', function(req, res) {
+        db.User.create({ email_address: req.body.author})
+        .then((data) => {
+          db.Message.create({ 
+            author_id: req.body.author, 
+            text: req.body.message
+          })
+          .then(() => {
+            db.Message.findAll()
+            .then((data) => {
+              res.send(data)
+            })
+          })
+        })
+        .catch((err) => {
+          if (err.errors && err.errors[0].type === 'unique violation') {
+            db.Message.create({ 
+              author_id: req.body.author, 
+              text: req.body.message
+            }) 
+            .then(() => {
+              db.Message.findAll()
+              .then((data) => {
+                res.send(data)
+              })
+            })
+          } else { res.status(404).send('random error', err)}
+        })
+      })
+
       app.use(serveStatic(path.join(__dirname,"../../dist")));
 
       app.use(function(req,res,next){// If you get here, then nothing was able to field the request.
