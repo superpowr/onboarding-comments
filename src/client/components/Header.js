@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
 	render() {
 		return(
-			<div style={styles.header}>
+			<div id='header' className='header' style={styles.header}>
 				<div style={{...styles.titleContainer, flexDirection: 'row'}} >
 					<div style={styles.titleContainer}>
 						<div style={styles.titleHeader}>Comments</div>
