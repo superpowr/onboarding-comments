@@ -18,13 +18,12 @@ class MessageList extends Component {
 	componentDidMount() {
 		this.scrollToBottom();
 	}
-
 	componentDidUpdate() {
 		this.scrollToBottom();
 	}
 	renderMessageList() {
-		console.log('rendering', this.props)
-		if(this.props.messageData && this.props.messageData.length > 0) {
+		if(Array.isArray(this.props.messageData) && this.props.messageData.length > 0) {
+			console.log('renderMessageList', this.props.messageData)
 			return this.props.messageData.map((message, i) => {
 				const { text, author_id, createdAt } = message;
 				var messageDate = dateFormat(createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT");
@@ -43,10 +42,9 @@ class MessageList extends Component {
 				)
 			})
 		}
-		return ''
+		return '';
 	}
 	componentWillReceiveProps(nextProps) {
-		console.log('recieving props')
 		this.renderMessageList();
 	}
 	render() {
@@ -110,8 +108,7 @@ const styles = {
 }
 
 function mapStateToProps(state) {
-	console.log('mappinng', state)
-	return { messageData: state.comments.messageData}
+	return { messageData: state.comments.messageData, user: state.comments.user}
 }
 
 export default connect(mapStateToProps, actions)(MessageList);

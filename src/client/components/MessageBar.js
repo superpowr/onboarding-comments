@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import Select from 'react-select';
 
 class MessageBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			authorText: '',
-			messageText: ''
+			messageText: '',
+			roomSelection: 'home'
 		}
 	}
 	handleChange(e) {
@@ -21,26 +22,19 @@ class MessageBar extends Component {
 			})
 		}
 	}
+	handleSelectChange(e) {
+		this.setState({ roomSelection: e.target.value })
+	}
 	handleSubmit(e) {
-		console.log('sasdfasdf')
 		e.preventDefault();
-		const { authorText, messageText } = this.state
-		this.props.postMessage({ author: authorText, message: messageText})
+		const { messageText, roomSelection } = this.state
+		this.props.postMessage({ author: this.props.user, message: messageText, room: roomSelection })
 		this.setState({ messageText: ''})
 	}
 	render() {
 		return (
 			<div  style={{...styles.barContainer, borderTop: 'none', width: '100%'}}>
 				<form onSubmit={this.handleSubmit.bind(this)} style={styles.barContainer}>
-					<input 
-						value={this.state.authorText} 
-						id='author'
-						onChange={this.handleChange.bind(this)}
-						placeholder='type your name...' 
-						style={{border: 'none', ...styles.inputText}} 
-						type='text'
-					/>
-					<label style={styles.breaker}></label>
 					<input type='submit' style={{display: 'none'}}/>
 					<input 
 						value={this.state.messageText} 
@@ -50,7 +44,12 @@ class MessageBar extends Component {
 						style={{border: 'none', ...styles.inputText}} 
 						type='text'
 					/>
-				</form>
+					<select onChange={this.handleSelectChange.bind(this)} name="txtCountry">
+						<option value='home'>Home</option>
+						<option value='chitChat'>ChitChat</option>
+						<option value='memes'>Memes</option>
+					</select>
+					</form>
 			</div>
 		)
 	}
@@ -77,4 +76,9 @@ const styles = {
 		margin: '0 10px 0 10px'
 	}
 }
-export default connect(null, actions)(MessageBar)
+
+function mapStateToProps(state) {
+	return { user: state.comments.user}
+}
+
+export default connect(mapStateToProps, actions)(MessageBar)
