@@ -34,7 +34,7 @@ class MessageBar extends Component {
 	}
 	render() {
 		return (
-			<div  style={{...styles.barContainer, borderTop: 'none', width: '100%'}}>
+			<div className='messageBar' style={{...styles.barContainer, borderTop: 'none', width: '100%'}}>
 				<form onSubmit={this.handleSubmit.bind(this)} style={styles.barContainer}>
 					<input type='submit' style={{display: 'none'}}/>
 					<input 

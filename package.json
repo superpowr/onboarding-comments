@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is the onboarding coding challenge for POWr Fullstack Engineers",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.js --recursive ./test",
     "start": "nodemon ./src/api/server.js",
     "dbinit": "node ./setup/dbinit.js",
     "dbusercreate": "node ./setup/create_powr_user.js"
@@ -33,6 +33,7 @@
     "bluebird": "^3.4.7",
     "body-parser": "^1.15.2",
     "chai": "^3.5.0",
+    "chai-jquery": "^2.0.0",
     "colors": "^1.1.2",
     "css-loader": "^0.26.1",
     "dateformat": "^2.0.0",
@@ -43,6 +44,8 @@
     "fetch-mock": "^5.8.1",
     "figlet": "^1.2.0",
     "jest": "^18.1.0",
+    "jquery": "^3.1.1",
+    "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "moment": "^2.17.1",
     "morgan": "^1.7.0",
@@ -51,6 +54,7 @@
     "pg": "^6.1.2",
     "promise-polyfill": "^6.0.2",
     "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-modal": "^1.6.5",
     "react-redux": "^5.0.2",

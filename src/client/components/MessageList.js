@@ -46,7 +46,7 @@ class MessageList extends Component {
 	}
 	render() {
 		return (	
-			<div style={styles.container}>
+			<div className='messageList' style={styles.container}>
 				<div style={styles.listContainer}>
 					{this.renderMessageList()}
 					<div style={ {float:"left", clear: "both"} }

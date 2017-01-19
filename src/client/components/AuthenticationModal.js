@@ -49,6 +49,7 @@ class AuthenticationModal extends Component {
 		var isOpen = this.props.user !== undefined ? false : true;
 		return (
 			<Modal
+				className='modal'
 				isOpen={this.state.isOpen}
 				closeTimeoutMS={10}
 				style={styles.modalStyle}
