@@ -16,7 +16,7 @@ export const login = ({email, password}) => {
 	return function(dispatch) {
 		axios.post('/login', { email, password })
 		.then((data) => {
-			dispatch({ type: FETCH_USER ,data})
+			dispatch({ type: FETCH_USER, data})
 		})
 	}
 }

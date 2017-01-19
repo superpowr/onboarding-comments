@@ -39,24 +39,23 @@ figlet(introAscii,{font:asciiFont})
       }));
 
       app.use(session({
-        name: 'cookie-id',
         secret: 'POWRsPowerfulPower',
-        saveUninitialized: true,
-        resave: true,
-        httpOnly: true
       }));
 
-      app.use(function printSession(req, res, next) {
-        console.log('req.session', req.session);
-        return next();
-      });
-      
+      // app.use(function printSession(req, res, next) {
+      //   console.log('req.session', req.session);
+      //   return next();
+      // });
+      var sess;
       app.get('/', function(req, res) {
+        sess=req.session;
+        sess.email
         res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
-      app.get('/messages/posts', function(req, res) {
-        if(req.session.email) {
+      app.post('/messages/room', function(req, res) {
+        console.log(req.body)
+        if(sess) {
           db.Message.findAll({
             where: {
               room_name: req.body.room
@@ -94,7 +93,7 @@ figlet(introAscii,{font:asciiFont})
                   salt: salt
                 })
                 .then((data) => { 
-                  req.session.email = email;
+                  sess.email = email;
                   res.status(200).send(email) 
                 })
               })
@@ -139,11 +138,11 @@ figlet(introAscii,{font:asciiFont})
       app.post('/messages/posts', function(req, res) {
         const { author, room, message } = req.body;
         db.Message.create({ 
-          author_id: author, 
-          text: message
+          author_name: author, 
+          text: message,
+          room_name: room
         })
         .then(() => {
-          console.log('roomroomroomroomroom', room)
           db.Message.findAll({
             where: {
               room_name: room
@@ -156,7 +155,7 @@ figlet(introAscii,{font:asciiFont})
         .catch((err) => {
           if (err.errors && err.errors[0].type === 'unique violation') {
             db.Message.create({ 
-              author_id: author, 
+              author_name: author, 
               text: message
             }) 
             .then(() => {

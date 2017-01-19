@@ -9,7 +9,8 @@ class AuthenticationModal extends Component {
 		this.state = {
 			type: 'Login',
 			email: '',
-			password: ''
+			password: '',
+			isOpen: true
 		};
 	}
 	handleChange(e) {
@@ -33,13 +34,22 @@ class AuthenticationModal extends Component {
 		}
 		this.setState({ email: '', password: ''})
 	}
+	componentWillReceiveProps(newProps){
+		console.log('newpropsnewprops', newProps)
+		if(newProps.user) {
+			if(!newProps.messageData) {
+				this.props.fetchComments('home') 
+			}
+			this.setState({
+				isOpen: false
+			})
+		}
+	}
 	render() {
 		var isOpen = this.props.user !== undefined ? false : true;
 		return (
 			<Modal
-				isOpen={isOpen}
-				onAfterOpen={() => console.log('opened')}
-				onRequestClose={() => console.log('closed')}
+				isOpen={this.state.isOpen}
 				closeTimeoutMS={10}
 				style={styles.modalStyle}
 				contentLabel="Modal"
@@ -116,6 +126,6 @@ const styles = {
 }
 
 function mapStateToProps(state) {
-	return { user: state.comments.user}
+	return { messageData: state.comments.messageData, user: state.comments.user}
 }
 export default connect(mapStateToProps, actions)(AuthenticationModal)

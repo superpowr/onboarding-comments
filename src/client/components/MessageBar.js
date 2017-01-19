@@ -24,6 +24,7 @@ class MessageBar extends Component {
 	}
 	handleSelectChange(e) {
 		this.setState({ roomSelection: e.target.value })
+		this.props.fetchComments(e.target.value)
 	}
 	handleSubmit(e) {
 		e.preventDefault();
