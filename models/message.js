@@ -12,7 +12,4 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	});
 	return Message;
-}
-
-// $2a$10$gSndHELz4pqXcErsadnHDuQUJNZcJhvtC0IqeUGAVbCa0b2LEZLKm
-// $2a$10$eTKoWTh6w5kYaE9YWPY15.lHKOn6uArdc0Bj.IFRW3RjwBQ0uqmQe
+};

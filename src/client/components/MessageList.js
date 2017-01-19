@@ -8,9 +8,6 @@ class MessageList extends Component {
 	constructor(props) {
 		super(props)
 	}
-	componentWillMount() {
-		this.props.fetchComments();
-	}
 	scrollToBottom() {
     const node = ReactDOM.findDOMNode(this.messagesEnd);
     node.scrollIntoView({behavior: "smooth"});
@@ -25,7 +22,7 @@ class MessageList extends Component {
 		if(Array.isArray(this.props.messageData) && this.props.messageData.length > 0) {
 			console.log('renderMessageList', this.props.messageData)
 			return this.props.messageData.map((message, i) => {
-				const { text, author_id, createdAt } = message;
+				const { text, author_name, createdAt } = message;
 				var messageDate = dateFormat(createdAt, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 				return (
 					<div style={styles.messageContainer} key={i}>
@@ -34,7 +31,7 @@ class MessageList extends Component {
 								{text}
 							</div>
 							<div style={styles.infoContainer}>
-								<div>From: {author_id}</div>
+								<div>From: {author_name}</div>
 								<div>{messageDate}</div>
 							</div>
 						</div>
