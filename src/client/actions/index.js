@@ -143,7 +143,7 @@ export function createMsg(message) {
     return msgReq(body).then((res) => {
         return res.json();
       }).then((body) => {
-        dispatch(setMsg(body.message));
+        dispatch(setMsg(body.comment));
     });
   }
 }
@@ -155,7 +155,7 @@ export function createComment(messageId, reply) {
     return commentReq(body).then((res) => {
         return res.json();
       }).then((body) => {
-        dispatch(setComment(body));
+        dispatch(setComment(body.comment));
     });
   }
 }
