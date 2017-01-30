@@ -36,6 +36,9 @@ module.exports = {
                     'resolve-url',//This is for `url(...)` in css files
                     'sass?sourceMap'//Source map just includes source map comments
                 ]
+            },
+            {   test: /\.styl$/, 
+                loader: 'style-loader!css-loader!stylus-loader' 
             }
         ]
     },

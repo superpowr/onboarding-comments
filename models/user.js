@@ -1,13 +1,15 @@
- // see: http://docs.sequelizejs.com/en/v3/docs/models-definition/#definition -WD
 module.exports = function(sequelize, DataTypes){
-    var UserData = sequelize.define('UserData',
+  var User = sequelize.define('User',
     {
-      email_address:{type:DataTypes.TEXT},
+      username: DataTypes.STRING,
+      password: DataTypes.STRING
     },
     {
-        associate: function(models){
-          // models.UserData.hasMany(models.something);
-        }
-    });
-    return UserData;
+    classMethods: {
+      associate: function(models) {
+        models.User.hasMany(models.Message)
+      }
+    }
+   });
+  return User;
 }

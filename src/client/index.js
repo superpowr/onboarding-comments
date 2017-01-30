@@ -18,14 +18,10 @@ import {
   routerReducer }             from 'react-router-redux'
 
 import {
-        logger,
-        thunk
-      }                       from 'Middleware';
-
-import {
 
 } from 'Actions';
 
+import thunk from 'redux-thunk';
 
 import App                   from 'Containers/ApplicationContainer'
 
@@ -34,7 +30,7 @@ const store = createStore(
     Application,
     routing: routerReducer
   }),
-  // applyMiddleware(thunk) see: http://redux.js.org/docs/advanced/Middleware.html
+  applyMiddleware(thunk)
 );
 
 const history = syncHistoryWithStore(hashHistory, store);
