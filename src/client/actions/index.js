@@ -143,7 +143,7 @@ export function createMsg(message) {
     return msgReq(body).then((res) => {
         return res.json();
       }).then((body) => {
-        dispatch(setMsg(body.comment));
+        dispatch(setMsg(body.message));
     });
   }
 }

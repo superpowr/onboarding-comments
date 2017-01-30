@@ -77,6 +77,7 @@ const Application = (state=initialState, action) =>  {
 function addComment(comment) {
   return (message) => {
     if (comment.MessageId === message.id) {
+      message.comments = Array.isArray(message.comments) ? message.comments : [];
       message.comments.push(comment);
     }
     return message;
