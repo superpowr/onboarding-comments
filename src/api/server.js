@@ -28,21 +28,42 @@ figlet(introAscii,{font:asciiFont})
     .sync()
     .then(()=>{
 
-      if (!IS_PRODUCTION) require('./bundler.js')(app); //Webpack
+      if (!IS_PRODUCTION) require('./bundler.js')(app); // Webpack
 
       app.set('models',db.sequelize.models);
 
       app.use(bodyParser.json({
-        extended:true //see:https://www.npmjs.com/package/body-parser
+        extended:true // See: https://www.npmjs.com/package/body-parser
       }));
 
       app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname,"../../dist/index.html"));
+
+        // Right now I am trying to get all the comments and just send them as is.
+        // How can I get them and pass them to the client side?
+
+        db.Comment
+          .findAll()
+          .then(function(comments) {
+            res.send({ comments: comments })
+          });
+
+        // res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
+
+      // app.post('/user/login', function(req, res) {
+      //     res.send('Login!')
+      // })
+
+      // app.post('/user/logout', function(req, res) {
+      //     res.send('Logout!')
+      // })
+
+      // app.post('/comment/new', function(req, res) {
+      // })
 
       app.use(serveStatic(path.join(__dirname,"../../dist")));
 
-      app.use(function(req,res,next){// If you get here, then nothing was able to field the request.
+      app.use(function(req,res,next){ // If you get here, then nothing was able to field the request.
         res.send(JSON.stringify({
           success:false,
           data:middlwareError
