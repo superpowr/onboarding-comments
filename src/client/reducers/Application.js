@@ -1,11 +1,15 @@
 const initialState = {
-    TOTALLY_SILLY_STATE:'Hello World'
+  comments: []
 };
+
 const Application = (state=initialState, action) =>  {
-  switch (action.type){
-  case 'SOMETHING':
-    return state;
-  default:
+  switch (action.type) {
+    case 'SET_COMMENTS':
+      return {
+        ...state,
+        comments: action.comments
+      }
+    default:
       return state
   }
 }

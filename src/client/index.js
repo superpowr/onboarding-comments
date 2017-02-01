@@ -13,28 +13,20 @@ import { Router,
          hashHistory,
          IndexRoute }         from 'react-router'
 
-import {
-  syncHistoryWithStore,
-  routerReducer }             from 'react-router-redux'
+import { 
+  syncHistoryWithStore, 
+  routerReducer } from 'react-router-redux'
 
-import {
-        logger,
-        thunk
-      }                       from 'Middleware';
+import thunk from 'redux-thunk';
 
-import {
-
-} from 'Actions';
-
-
-import App                   from 'Containers/ApplicationContainer'
+import App from 'Containers/ApplicationContainer'
 
 const store = createStore(
   combineReducers({
     Application,
     routing: routerReducer
   }),
-  // applyMiddleware(thunk) see: http://redux.js.org/docs/advanced/Middleware.html
+  applyMiddleware(thunk) // see: http://redux.js.org/docs/advanced/Middleware.html
 );
 
 const history = syncHistoryWithStore(hashHistory, store);

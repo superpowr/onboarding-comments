@@ -32,36 +32,34 @@ figlet(introAscii,{font:asciiFont})
 
       app.set('models',db.sequelize.models);
 
+      var morgan = require('morgan')
+      app.use(morgan('combined'))
+
       app.use(bodyParser.json({
         extended:true // See: https://www.npmjs.com/package/body-parser
       }));
 
       app.get('/', function(req, res) {
-
-        // Right now I am trying to get all the comments and just send them as is.
-        // How can I get them and pass them to the client side?
-
-        db.Comment
-          .findAll()
-          .then(function(comments) {
-            res.send({ comments: comments })
-          });
-
-        // res.sendFile(path.join(__dirname,"../../dist/index.html"));
+        res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
-      // app.post('/user/login', function(req, res) {
-      //     res.send('Login!')
-      // })
-
-      // app.post('/user/logout', function(req, res) {
-      //     res.send('Logout!')
-      // })
-
-      // app.post('/comment/new', function(req, res) {
-      // })
 
       app.use(serveStatic(path.join(__dirname,"../../dist")));
+
+      app.get('/comments', function(req, res, next) {
+        
+        // Mock a test comment for... uh... testing purposes
+        var test_comment = [{ text: 'Hello world' }]
+
+        db.Comment.findAll().then(function(comments) {
+
+          // Un-comment this line later
+          // res.status(200).send({ comments: comments })
+
+          // Get rid of this later
+          res.status(200).send({ comments: test_comment });
+        })
+      });
 
       app.use(function(req,res,next){ // If you get here, then nothing was able to field the request.
         res.send(JSON.stringify({
