@@ -2,33 +2,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
+import Comment from 'Components/Comment'
+
 class ApplicationComponent extends Component {
+  
   componentDidMount() {
     this.props.getComments();
-  }  
+  } 
+
   render() {
 
-    // Should replace with loop...
-    // Iterate over comments array, spit out individual comment components
-    return <div><Comment comment={this.props.comments[0]}/></div>
-  }
-}
+    var comments = this.props.comments;
+    var components = [];
 
-class Comment extends Component {
-  render() {
-
-    // This is necessary because the initial state has no comments
-    // Could probably remove it if I were to iterate in the ApplicationComponent.render method...
-    // ... and not render any Comments if there are none in state
-    if (this.props.comment) {
-      return <div>{this.props.comment.text}</div>
-    } else {
-      return <div></div>
+    for (var i = 0; i < comments.length; i++) {
+      components.push(<Comment key={i} data={comments[i]}/>)
     }
+
+    return <div>{components}</div>
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = function(dispatch) {
   return {
     getComments: function() {
       dispatch(actions.getComments()); 

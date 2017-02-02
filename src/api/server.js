@@ -47,19 +47,26 @@ figlet(introAscii,{font:asciiFont})
       app.use(serveStatic(path.join(__dirname,"../../dist")));
 
       app.get('/comments', function(req, res, next) {
-        
-        // Mock a test comment for... uh... testing purposes
-        var test_comment = [{ text: 'Hello world' }]
-
         db.Comment.findAll().then(function(comments) {
 
-          // Un-comment this line later
-          // res.status(200).send({ comments: comments })
+          // Mock test comments. Get rid of this later.
+          // var test_comments = [{ text: 'Hello world!' }, { text: 'I am comment number 2.' }]
+          // res.status(200).send({ comments: test_comments });
 
-          // Get rid of this later
-          res.status(200).send({ comments: test_comment });
+          // Replace fake stuff above with this.
+          res.status(200).send({ comments: comments })
         })
       });
+
+      app.post('/comments', function(req, res, ext) {
+        
+        // Create the new Comment
+        db.Comment.create({
+          body: req.body.text
+        })
+
+        res.status(200);
+      })
 
       app.use(function(req,res,next){ // If you get here, then nothing was able to field the request.
         res.send(JSON.stringify({
