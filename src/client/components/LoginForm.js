@@ -12,7 +12,7 @@ class LoginForm extends Component {
     return ( 
       <div>
         <form onSubmit={ this.handleSubmit }>
-          <input type='text' ref='content' />
+          <input type='text' ref='content' placeholder='Email' />
           <input type='submit' value='Login' /> 
         </form>
       </div> 
@@ -22,14 +22,14 @@ class LoginForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     var value = this.refs.content.value;
-    this.props.setUser(value);
+    this.props.login(value);
   }
 }
 
 const mapDispatchToProps = function(dispatch) {
   return {
-    setUser: function(email) {
-      dispatch(actions.setUser(email)); 
+    login: function(email) {
+      dispatch(actions.login(email)); 
     }
   };
 };

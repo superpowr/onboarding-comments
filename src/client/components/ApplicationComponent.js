@@ -14,7 +14,7 @@ class ApplicationComponent extends Component {
   render() {
     var comments = this.props.comments;
     var components = comments.map(function(comment, i) {
-      return <Comment key={i} data={comment}/>;
+      return <Comment key={i} comment={comment}/>;
     });
 
     return ( 

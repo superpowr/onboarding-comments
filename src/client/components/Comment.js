@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Comment extends Component {
   formatTimestamp() {
-    var timestamp = this.props.data.createdAt;
+    var timestamp = this.props.comment.createdAt;
 
     // Change this later, to format the timestamp into human-readable
 
@@ -35,7 +35,7 @@ class Comment extends Component {
       <div style={commentStyle}>
         <div>
           <span style={authorStyle}>Sherwood </span> 
-          <span style={textStyle}>{this.props.data.text}</span>
+          <span style={textStyle}>{this.props.comment.text}</span>
         </div>
         <div style={timestampStyle}>
           <div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import LoginForm from 'Components/LoginForm.js'
+import LogoutForm from 'Components/LogoutForm.js'
 
 class Header extends Component {
   componentDidMount() {
@@ -19,17 +20,18 @@ class Header extends Component {
       fontWeight: 'light'
     };
 
-    // Change this to render sign in form
-    var text = (this.props.user === null ? 'No one logged in.' : this.props.user)
+    // Render login form or logout form, depending on if user is logged in
+    var form = (this.props.user === null ? <LoginForm /> : <LogoutForm />);
 
+    console.log('render')
     return ( 
       <div style={style}>
-        {text}
+        {this.props.user}
+        {form}
       </div> 
     );
   }
 }
-
 
 const mapDispatchToProps = function(dispatch) {
   return {

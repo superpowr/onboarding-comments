@@ -43,12 +43,24 @@ figlet(introAscii,{font:asciiFont})
         res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
-      app.get('/user', function(req, res) {
+      app.post('/user', function(req, res) {
 
         // Use sessions/cookies or something to remember current user
+        var user = db.User.find({ where: {
+          email_address: req.body.email} 
+        }).then(function(user) {
 
-        var test_user = { email: 'helloworld@gmail.com' }
-        res.status(200).send(test_user);
+          // If there is no such user
+          if (user === null) {
+            // Create the user, reassign the user var and continue
+            user = db.User.create({
+              email_address: req.body.email
+            })
+          }
+
+          res.status(200).send({ user: user });
+        });
+
       })
 
       app.use(serveStatic(path.join(__dirname,"../../dist")));

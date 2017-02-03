@@ -23,6 +23,11 @@ const Application = (state=initialState, action) =>  {
         ...state,
         user: action.email
       }
+    case 'REMOVE_USER':
+      return {
+        ...state,
+        user: null
+      }
     default:
       return state
   }

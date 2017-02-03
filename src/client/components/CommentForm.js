@@ -19,8 +19,8 @@ class CommentForm extends Component {
     return ( 
       <div style={style}>
         <form onSubmit={ this.handleSubmit }>
-          <input type='text' ref='content' />
-          <input type='submit' /> 
+          <input type='text' ref='content' placeholder='Comment'/>
+          <input type='submit' value='Post' /> 
         </form>
       </div> 
     );

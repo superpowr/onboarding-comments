@@ -8,7 +8,7 @@ export class ApplicationContainer extends Component {
     return ( 
       <div>
         <Header user={this.props.user}/>
-        <ApplicationComponent comments={this.props.comments} />
+        <ApplicationComponent comments={this.props.comments} user={this.props.user} />
       </div> 
     );
   }
