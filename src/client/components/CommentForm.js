@@ -2,15 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class Form extends Component {
+class CommentForm extends Component {
   constructor(props) {
      super(props);
      this.handleSubmit = this.handleSubmit.bind(this);
   }    
 
   render() {
+
+    var style = {
+      padding: '10px',
+      margin: '2px',
+      width: '20%'
+    };
+
     return ( 
-      <div>
+      <div style={style}>
         <form onSubmit={ this.handleSubmit }>
           <input type='text' ref='content' />
           <input type='submit' /> 
@@ -34,4 +41,4 @@ const mapDispatchToProps = function(dispatch) {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(null, mapDispatchToProps)(CommentForm);

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect,applyMiddleware } from 'react-redux'
 import ApplicationComponent from 'Components/ApplicationComponent'
-import Form from 'Components/Form'
+import CommentForm from 'Components/CommentForm'
 
 export class ApplicationContainer extends Component {
   render() {
     return ( 
       <div>
-        <Form />
+        <CommentForm />
         <ApplicationComponent comments={this.props.comments} />
       </div> 
     );
