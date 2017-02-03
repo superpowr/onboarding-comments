@@ -13,13 +13,12 @@ class ApplicationComponent extends Component {
   render() {
 
     var comments = this.props.comments;
-    var components = [];
 
-    for (var i = 0; i < comments.length; i++) {
-      components.push(<Comment key={i} data={comments[i]}/>)
-    }
+    var components = comments.map(function(comment, i) => {
+      return <div key={i}>{comment.text}</div>;
+    });
 
-    return <div>{components}</div>
+    return <div>{components}</div>;
   }
 }
 

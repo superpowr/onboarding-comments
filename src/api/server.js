@@ -48,12 +48,6 @@ figlet(introAscii,{font:asciiFont})
 
       app.get('/comments', function(req, res, next) {
         db.Comment.findAll().then(function(comments) {
-
-          // Mock test comments. Get rid of this later.
-          // var test_comments = [{ text: 'Hello world!' }, { text: 'I am comment number 2.' }]
-          // res.status(200).send({ comments: test_comments });
-
-          // Replace fake stuff above with this.
           res.status(200).send({ comments: comments })
         })
       });
@@ -62,10 +56,10 @@ figlet(introAscii,{font:asciiFont})
         
         // Create the new Comment
         db.Comment.create({
-          body: req.body.text
+          text: req.body.text
         })
 
-        res.status(200);
+        res.status(200).send({ comment: req.body.text });
       })
 
       app.use(function(req,res,next){ // If you get here, then nothing was able to field the request.

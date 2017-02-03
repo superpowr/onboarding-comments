@@ -2,7 +2,6 @@ import 'whatwg-fetch';
 
 export function getComments() {
   return function(dispatch) {
-    // console.log('function(dispatch)')
     return fetch('/comments')
                 .then(function(res) {
                   return res.json();
@@ -10,6 +9,13 @@ export function getComments() {
                 .then(function(body) {
                   dispatch(setComments(body.comments))
                 });
+  }
+}
+
+function addComment(comment) {
+  return {
+    type: 'ADD_COMMENT',
+    comment: comment
   }
 }
 
@@ -33,9 +39,8 @@ export function newComment(text) {
                 .then(function(res) {
                   return res.json();
                 })
-                .then(function() {
-                  console.log('sending dispatch to get comments')
-                  dispatch(getComments())
+                .then(function(body) {
+                  dispatch(addComment(text));
                 });
   }
 }

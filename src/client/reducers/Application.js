@@ -9,6 +9,14 @@ const Application = (state=initialState, action) =>  {
         ...state,
         comments: action.comments
       }
+      case 'ADD_COMMENT':
+      return {
+        ...state,
+        comments: [
+          ...state.comments,
+          { text: action.comment }
+        ]
+      }
     default:
       return state
   }
