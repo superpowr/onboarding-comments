@@ -17,9 +17,11 @@ class ApplicationComponent extends Component {
       return <Comment key={i} comment={comment}/>;
     });
 
+    var comment_form = (this.props.user === null ? null : <CommentForm />)
+
     return ( 
       <div>
-        <CommentForm />
+        {comment_form}
         <div>{components}</div> 
       </div>
       );

@@ -15,7 +15,7 @@ const Application = (state=initialState, action) =>  {
         ...state,
         comments: [
           ...state.comments,
-          { text: action.comment }
+          action.comment
         ]
       }
     case 'SET_USER':

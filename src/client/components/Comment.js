@@ -29,12 +29,10 @@ class Comment extends Component {
       color: 'blue'
     };
 
-    // Replace "Sherwood" with author name/email from props
-
     return ( 
       <div style={commentStyle}>
         <div>
-          <span style={authorStyle}>Sherwood </span> 
+          <span style={authorStyle}>{this.props.comment.User.email_address}</span> 
           <span style={textStyle}>{this.props.comment.text}</span>
         </div>
         <div style={timestampStyle}>

@@ -32,56 +32,81 @@ figlet(introAscii,{font:asciiFont})
 
       app.set('models',db.sequelize.models);
 
-      var morgan = require('morgan')
-      app.use(morgan('combined'))
-
       app.use(bodyParser.json({
-        extended:true // See: https://www.npmjs.com/package/body-parser
+        extended: true
       }));
 
       app.get('/', function(req, res) {
         res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
+      // POST /user
       app.post('/user', function(req, res) {
-
-        // Use sessions/cookies or something to remember current user
-        var user = db.User.find({ where: {
-          email_address: req.body.email} 
-        }).then(function(user) {
-
-          // If there is no such user
+        
+        // Find or create the current user, send it back to the client
+        // Could replace all of this with a sequelize FindOrCreate method
+        db.User.find({
+          where: { email_address: req.body.email } 
+        })
+        .then(function(user) {
+          // Create the user, if no user exists
           if (user === null) {
-            // Create the user, reassign the user var and continue
-            user = db.User.create({
-              email_address: req.body.email
-            })
+            user = db.User.create({ email_address: req.body.email })
           }
-
+          // Send the user to the view
           res.status(200).send({ user: user });
         });
-
-      })
+      });
 
       app.use(serveStatic(path.join(__dirname,"../../dist")));
 
+      // GET /comments
       app.get('/comments', function(req, res) {
-        db.Comment.findAll().then(function(comments) {
-          res.status(200).send({ comments: comments })
+
+        // Get all comments, and eager load the associated users
+        db.Comment.findAll({ 
+          include: [{ model: db.User }]
         })
+        // Send everything to the view
+        .then(function(comments) {
+          res.status(200).send({ 
+            comments: comments 
+          })
+        });
       });
 
+      // POST /comments
       app.post('/comments', function(req, res) {
         
-        // Create the new Comment
-        db.Comment.create({
-          text: req.body.text
+        // Get the current user from the database
+        db.User.find({ 
+          where: { email_address: req.body.email } 
         })
+        // Then, create a new comment with text provided, and current user id
+        .then(function(user) {
+          db.Comment.create({ 
+            text: req.body.text, 
+            UserId: user.id 
+          })
+          // Pass the new comment to a new function
+          .then(function(new_comment) {
 
-        res.status(200).send({ comment: req.body.text });
-      })
+            // Here, we find the new comment, but eager load the associated user
+            // This CANNOT be the best way to do this, but it works in the meantime
+            db.Comment.find({ 
+              where: { id: new_comment.id }, 
+              include: [{ model: db.User }]
+            })
+            // Finally, pass the new comment with its user to the view
+            .then(function(new_comment_w_user) {
+              res.status(200).send({ comment: new_comment_w_user });
+            })
+          });
+        });
+      });
 
-      app.use(function(req,res,next){ // If you get here, then nothing was able to field the request.
+      // If you get here, then nothing was able to field the request
+      app.use(function(req,res,next){
         res.send(JSON.stringify({
           success:false,
           data:middlwareError

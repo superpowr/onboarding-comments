@@ -3,13 +3,16 @@ import cookie from 'react-cookie';
 
 export function getComments() {
   return function(dispatch) {
+
+    // Make a call to GET /comments
     return fetch('/comments')
-                .then(function(res) {
-                  return res.json();
-                })
-                .then(function(body) {
-                  dispatch(setComments(body.comments))
-                });
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(body) {
+      // With the body of the response, set the state to include all comments
+      dispatch(setComments(body.comments))
+    });
   }
 }
 
@@ -21,80 +24,73 @@ function addComment(comment) {
 }
 
 function setComments(comments) {
-  return { type: 'SET_COMMENTS', comments: comments }
+  return { 
+    type: 'SET_COMMENTS', 
+    comments: comments 
+  }
 }
 
 export function newComment(text) {
   return function(dispatch, getState) {
 
-    // Get the current state, set body to a Comment object literal with given text
-    var state = getState();
-    var body = { text: text };
+    // Get the current user, and make the body of the request
+    var email = cookie.load('PowrCommentsUserEmail')
+    var body = { text: text, email: email };
 
+    // Make a call to POST /comments, with the body object we made
     return fetch('/comments', { 
-                  method: 'POST', 
-                  body: JSON.stringify(body),
-                  headers: { 'Content-Type': 'application/json' },
-                  credentials: 'same-origin'  
-                })
-                .then(function(res) {
-                  return res.json();
-                })
-                .then(function(body) {
-                  dispatch(addComment(text));
-                });
+      method: 'POST', 
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin'  
+    })
+    .then(function(res) {
+      return res.json();
+    })
+    // Set the state to include the new comment, included in the body of the response
+    .then(function(body) {
+      dispatch(addComment(body.comment));
+    });
   }
 }
 
 export function getUser() {
-
-  // The Header component goes to getUser on componentDidMount
-  // It should then come here, and check a for a cookie in the browser? (sessions)
-  // If there is a cookie, it retrieves the email from the cookie and calls dispatch(setUser(email))
-  // If there is no cookie, it does nothing... thereby leaving user at null, which causes the LoginForm to render
-
   return function(dispatch) {
+
+    // Attempt to load a cookie from the browser
     var email = cookie.load('PowrCommentsUserEmail')
-    console.log(email)
-    if (email) {
-      dispatch(setUser(email))
-    }
+    // If it exists, set the user to the user specified by the cookie (not very secure)
+    if (email) { dispatch(setUser(email)) }
+    // Otherwise, the user remains null in state, and the login form is displayed
   }
 }
 
 export function login(email) {
-
-  // This corresponds to a post /user route on the server side
-  // The post route will check if a user exists with the provided email
-  // if it does, the route will return that user. 
-  // Then back here, call dispatch(setUser(body.email)) to set the user to the current user
-  // Also, put a cookie in the user's browser
-  // If a user with the provided email does NOT exist, create it
-  // Again, dispatch the setUser action and put a cookie in the browser
-
   return function(dispatch) {
 
     // Set a new cookie with expiry 10 minutes from now
+    // Cookie includes the provided email, which will be used to identify the user from now on
     var expiry = new Date();
     expiry.setMinutes(expiry.getMinutes() + 10);
     cookie.save('PowrCommentsUserEmail', email, { path: '/', expires: expiry });
 
-    // Make a body for the upcoming request
+    // Make a body for the upcoming request with the provided email
     var body = { email: email };
 
-    // Find existing user or create a new user
+    // Find existing user with the provided email or create a new user
     return fetch('/user', { 
-                  method: 'POST', 
-                  body: JSON.stringify(body),
-                  headers: { 'Content-Type': 'application/json' },
-                  credentials: 'same-origin'  
-                })
-                .then(function(res) {
-                  return res.json();
-                })
-                .then(function(body) {
-                  dispatch(setUser(email));
-                });
+      method: 'POST', 
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin'  
+    })
+    .then(function(res) {
+      return res.json();
+    })
+    .then(function(body) {
+      // Set the state to include the current user
+      dispatch(setUser(email));
+    });
   }
 }
 
@@ -114,6 +110,5 @@ function setUser(email) {
 }
 
 function removeUser(email) {
-  console.log('removeUser')
   return { type: 'REMOVE_USER' }
 }

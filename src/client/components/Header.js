@@ -23,7 +23,6 @@ class Header extends Component {
     // Render login form or logout form, depending on if user is logged in
     var form = (this.props.user === null ? <LoginForm /> : <LogoutForm />);
 
-    console.log('render')
     return ( 
       <div style={style}>
         {this.props.user}
