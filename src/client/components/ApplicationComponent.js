@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Comment from 'Components/Comment'
+import CommentForm from 'Components/CommentForm'
 
 class ApplicationComponent extends Component {
   
@@ -11,22 +12,17 @@ class ApplicationComponent extends Component {
   } 
 
   render() {
-
     var comments = this.props.comments;
-
-    console.log(comments);
-
     var components = comments.map(function(comment, i) {
-      return ( 
-        <Comment key={i} data={comment}/>
-        // <div key={i}>
-            // {comment.id}
-            // {comment.text}
-        // </div>
-        );
+      return <Comment key={i} data={comment}/>;
     });
 
-    return <div>{components}</div>;
+    return ( 
+      <div>
+        <CommentForm />
+        <div>{components}</div> 
+      </div>
+      );
   }
 }
 

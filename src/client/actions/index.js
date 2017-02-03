@@ -44,3 +44,20 @@ export function newComment(text) {
                 });
   }
 }
+
+export function getUser() {
+  return function(dispatch) {
+    return fetch('/user')
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(body) {
+                  console.log('getUser response body', body)
+                  dispatch(setUser(body.email))
+                });
+  }  
+}
+
+function setUser(email) {
+  return { type: 'SET_USER', email: email }
+}

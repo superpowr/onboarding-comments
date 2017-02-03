@@ -43,16 +43,23 @@ figlet(introAscii,{font:asciiFont})
         res.sendFile(path.join(__dirname,"../../dist/index.html"));
       });
 
+      app.get('/user', function(req, res) {
+
+        // Use sessions/cookies or something to remember current user
+
+        var test_user = { email: 'helloworld@gmail.com' }
+        res.status(200).send(test_user);
+      })
 
       app.use(serveStatic(path.join(__dirname,"../../dist")));
 
-      app.get('/comments', function(req, res, next) {
+      app.get('/comments', function(req, res) {
         db.Comment.findAll().then(function(comments) {
           res.status(200).send({ comments: comments })
         })
       });
 
-      app.post('/comments', function(req, res, ext) {
+      app.post('/comments', function(req, res) {
         
         // Create the new Comment
         db.Comment.create({

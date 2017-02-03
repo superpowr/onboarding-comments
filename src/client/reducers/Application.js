@@ -1,5 +1,6 @@
 const initialState = {
-  comments: []
+  comments: [],
+  user: null
 };
 
 const Application = (state=initialState, action) =>  {
@@ -9,13 +10,18 @@ const Application = (state=initialState, action) =>  {
         ...state,
         comments: action.comments
       }
-      case 'ADD_COMMENT':
+    case 'ADD_COMMENT':
       return {
         ...state,
         comments: [
           ...state.comments,
           { text: action.comment }
         ]
+      }
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.email
       }
     default:
       return state
