@@ -45,6 +45,7 @@ figlet(introAscii,{font:asciiFont})
         
         // Find or create the current user, send it back to the client
         // Could replace all of this with a sequelize FindOrCreate method
+        // Should also run validations on the user input, to make sure it's a good email
         db.User.find({
           where: { email_address: req.body.email } 
         })

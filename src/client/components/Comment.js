@@ -22,6 +22,7 @@ class Comment extends Component {
 
     var timestampStyle = {
       marginTop: '10px',
+      fontSize: '11px'
     };
 
     var authorStyle = {
@@ -32,7 +33,7 @@ class Comment extends Component {
     return ( 
       <div style={commentStyle}>
         <div>
-          <span style={authorStyle}>{this.props.comment.User.email_address}</span> 
+          <span style={authorStyle}>{this.props.comment.User.email_address} </span> 
           <span style={textStyle}>{this.props.comment.text}</span>
         </div>
         <div style={timestampStyle}>

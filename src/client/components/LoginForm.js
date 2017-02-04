@@ -9,10 +9,15 @@ class LoginForm extends Component {
   }    
 
   render() {
+
+    var inputStyle = {
+      marginRight: '10px'
+    }
+
     return ( 
       <div>
-        <form onSubmit={ this.handleSubmit }>
-          <input type='text' ref='content' placeholder='Email' />
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' ref='content' placeholder='Email' style={inputStyle} />
           <input type='submit' value='Login' /> 
         </form>
       </div> 

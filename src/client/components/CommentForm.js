@@ -16,10 +16,14 @@ class CommentForm extends Component {
       width: '20%'
     };
 
+    var inputStyle = {
+      marginRight: '10px'
+    }
+
     return ( 
       <div style={style}>
-        <form onSubmit={ this.handleSubmit }>
-          <input type='text' ref='content' placeholder='Comment'/>
+        <form onSubmit={this.handleSubmit}>
+          <input type='text' ref='content' placeholder='Comment' style={inputStyle} />
           <input type='submit' value='Post' /> 
         </form>
       </div> 

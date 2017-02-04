@@ -9,10 +9,16 @@ class LogoutForm extends Component {
   }    
 
   render() {
-    return ( 
-      <form onSubmit={ this.handleSubmit }>
-        <input type='submit' value='Logout' /> 
-      </form>
+
+    var style = {
+      marginLeft: '10px'
+    }
+
+    return (
+      <div>
+        {this.props.user}
+        <input type='submit' value='Logout' onClick={this.handleSubmit} style={style} /> 
+      </div>
     );
   }
 
