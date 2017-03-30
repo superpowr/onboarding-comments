@@ -1,42 +1,49 @@
-import { connect,applyMiddleware } from 'react-redux'
-import ApplicationComponent from 'Components/ApplicationComponent'
-import * as actions from 'Actions'
+import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-const mapStateToProps = ( state, props ) => {
-    return {
-      ...state.Application
-    }
+import Navbar from '../components/Navbar';
+import Message from '../components/Message';
+import Messages from '../components/Messages';
+import styles from '../styles/index.styl';
+
+export class ApplicationContainer extends React.PureComponent {
+  componentWillMount() {
+    this.props.getUser();
+  }
+  render() {
+    return (
+      <div className='app-wrap'>
+        
+        <Navbar 
+          isLogin={this.props.isLogin} 
+          user={this.props.user}
+          errMessage={this.props.errMessage}
+        />
+        <Messages 
+          user={this.props.user}
+          messages={this.props.messages}  
+        />
+        
+        {/* Only show the message component is the user is logged in*/}
+        {this.props.user &&
+          <Message />
+        }
+      </div>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-
-  //This is here for convenience.
-
-  // var exceptions = {
-  //   //If you need to, add an exception here.
-  //   // eg:
-  //   // myFunction:function someExample(){}
-  // };
-
-  // Object.keys(actions).forEach((key) => {
-  //   var functionObj;
-  //   if (key in exceptions) {
-  //     actions[key] = exceptions[key];
-  //   }else{
-  //     functionObj = actions[key];
-  //     actions[key] = function(){
-  //       dispatch(functionObj.apply(null,arguments));
-  //     };
-  //   }
-  // });
-
-  // return actions;
-  return {};
+  return {
+    getUser: () => dispatch(actions.isAuthenticated())
+  }
 }
 
-const ApplicationContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ApplicationComponent)
+const mapStateToProps = (state, props) => {
+  return {
+    ...state.Application
+  }
+}
 
-export default ApplicationContainer
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationContainer);

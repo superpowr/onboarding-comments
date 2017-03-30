@@ -4,7 +4,7 @@ module.exports = {
    "password": null,
    "database": "powr_comments_onboarding_db",
    "host": "127.0.0.1",
-   "dialect": "postgres"
+   "dialect": "postgres"   
  },
  "test": {
    "username": "powruser",
