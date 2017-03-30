@@ -1,6 +1,6 @@
 # POWr FullStack Onboarding
 
-####Project: Comments
+#### Project: Comments
 <img src='https://pbs.twimg.com/profile_images/775821222445592576/CmwF9aeq.jpg' align='right'>
 We are very excited to have you beginning the POWr onboarding process and we hope you are too!
 
@@ -26,21 +26,21 @@ Mac   - see:https://postgresapp.com/.
 
 Goals
 ---
-####Your comments application should have the following minimal user-consumable features:
+#### Your comments application should have the following minimal user-consumable features:
 
 1. User **messages/posts**. A user should be able to post messages where other users can them consume/read those messages/posts. A post should contain at minimum the message, the author name, and when it was posted.
 2. User messages/posts should **persist** on page refresh by being stored, preferably in a relational database (see next section)
 
 
 
-####Your comments application should have the following architectural features:
+#### Your comments application should have the following architectural features:
 
 1. A front-end application written in **React**(w.Redux).
 2. Application server written using **Node**(w.Express).
 3. Relational database for persisting user data.  At POWr, we use **PostgreSQL**.  Its highly recommended that you do so as well.
 4. The build process should be **Webpack**-centric.  This is less architectural, but reflects the notion that webpack is essential to our development process.
 
-####Bonus points:
+#### Bonus points:
 
 1. Your application should be aesthetically pleasing and make the user **want to use it**. Take pride in what you're building.
 2. User **accounts and sessions**.  A user should be able to login and maintain a session with your application.
@@ -52,7 +52,7 @@ Goals
 
 Resources
 ---
-####Below are a series of resources that you may find helpful when proceeding through your build
+#### Below are a series of resources that you may find helpful when proceeding through your build
 
 Webpack
 ---
