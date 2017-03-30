@@ -1,10 +1,14 @@
-const initialState = {
-    TOTALLY_SILLY_STATE:'Hello World'
-};
-const Application = (state=initialState, action) =>  {
+import {
+  FETCH_USER, 
+  FETCH_MESSAGES
+} from '../actions/types';
+
+const Application = (state=[], action) =>  {
   switch (action.type){
-  case 'SOMETHING':
-    return state;
+  case FETCH_USER:
+    return {...state, user: action.data.data}
+  case FETCH_MESSAGES:
+    return {...state, messageData: action.data.data };
   default:
       return state
   }
