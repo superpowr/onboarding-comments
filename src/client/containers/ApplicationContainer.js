@@ -1,42 +1,23 @@
+import React, { Component } from 'react';
 import { connect,applyMiddleware } from 'react-redux'
 import ApplicationComponent from 'Components/ApplicationComponent'
-import * as actions from 'Actions'
+import Header from 'Components/Header'
 
-const mapStateToProps = ( state, props ) => {
+export class ApplicationContainer extends Component {
+  render() {
+    return ( 
+      <div>
+        <Header user={this.props.user} />
+        <ApplicationComponent comments={this.props.comments} user={this.props.user} />
+      </div> 
+    );
+  }
+}
+
+const mapStateToProps = function(state, props) {
     return {
       ...state.Application
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-
-  //This is here for convenience.
-
-  // var exceptions = {
-  //   //If you need to, add an exception here.
-  //   // eg:
-  //   // myFunction:function someExample(){}
-  // };
-
-  // Object.keys(actions).forEach((key) => {
-  //   var functionObj;
-  //   if (key in exceptions) {
-  //     actions[key] = exceptions[key];
-  //   }else{
-  //     functionObj = actions[key];
-  //     actions[key] = function(){
-  //       dispatch(functionObj.apply(null,arguments));
-  //     };
-  //   }
-  // });
-
-  // return actions;
-  return {};
-}
-
-const ApplicationContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ApplicationComponent)
-
-export default ApplicationContainer
+export default connect(mapStateToProps, null)(ApplicationContainer);
