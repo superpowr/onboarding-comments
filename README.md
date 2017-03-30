@@ -45,8 +45,7 @@ Goals
 1. Your application should be aesthetically pleasing and make the user **want to use it**. Take pride in what you're building.
 2. User **accounts and sessions**.  A user should be able to login and maintain a session with your application.
 3. Tests.  The world is ridden with buggy code.  Winter doesn't have to come.
-![Tests]
-(https://blog.testfort.com/wp-content/uploads/2014/12/q3.jpg)
+![Tests](https://blog.testfort.com/wp-content/uploads/2014/12/q3.jpg)
 4. Room **"owner"/"admin"** actions.  Most commonly a user with the ability to remove messages posted by other users.
 5. Add the ability to **reply** to a particular comment
 
